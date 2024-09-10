@@ -12,25 +12,25 @@
         <title>Insert Page</title>
     </head>
     <body>
-        
+
         <table border="0">
-            <tbody>
-                <tr>
-                    <td>Nhap ban kinh r: </td>
-                    <td>
-                        <input type="text" name="r" id="bk"/>
-                    </td>
-                </tr>
+            <tbody>                
                 <tr>
                     <td>Nhap x: </td>
                     <td>
-                        <input type="text" name="x" id="toadoy"/>
+                        <input type="text" name="x" id="toadox"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Nhap y: </td>
                     <td>
-                        <input type="text" name="y" id="toadox"/>
+                        <input type="text" name="y" id="toadoy"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nhap ban kinh r: </td>
+                    <td>
+                        <input type="text" name="r" id="bk"/>
                     </td>
                 </tr>
                 <tr>
@@ -50,22 +50,22 @@
 
 
         <script>
-            var idcircle = 0;
-            var bk;
+            var circleID = 0;           
             var x;
             var y;
+            var bk;
             var container;
             function addCircle() {
-                idcircle++;
-                bk = document.getElementById("bk").value;
+                circleID++;
                 x = document.getElementById("toadox").value;
                 y = document.getElementById("toadoy").value;
+                bk = document.getElementById("bk").value;
                 container = document.getElementById("container");
-                container.innerHTML += `<div>\${idcircle}: \${bk}, \${x}, \${y}</div>
-                    <input type ="hidden" value = "\${idcircle}" name = "circleid" />
-                    <input type ="hidden" value = "\${bk}" name = "bk\${idcircle}" />
-                    <input type ="hidden" value = "\${x}" name = "x\${idcircle}" />
-                    <input type ="hidden" value = "\${y}" name = "y\${idcircle}" />`;
+                container.innerHTML += `<div>\${circleID}: \${x}, \${y}, \${bk}</div>
+                    <input type="hidden" value="\${circleID}" name="circleID"/>
+                    <input type="hidden" value="\${x}" name="x\${circleID}"/>
+                    <input type="hidden" value="\${y}" name="y\${circleID}"/>
+                    <input type="hidden" value="\${bk}" name="bk\${circleID}"/>`;
             }
         </script>
 

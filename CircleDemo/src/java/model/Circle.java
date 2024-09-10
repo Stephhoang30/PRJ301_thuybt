@@ -10,16 +10,16 @@ package model;
  */
 public class Circle {
 
-    private int id, r, x, y;
+    private int id, x, y, r;
 
     public Circle() {
     }
 
-    public Circle(int id, int r, int x, int y) {
+    public Circle(int id, int x, int y, int r) {
         this.id = id;
-        this.r = r;
         this.x = x;
         this.y = y;
+        this.r = r;
     }
 
     public int getId() {
@@ -28,14 +28,6 @@ public class Circle {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getR() {
-        return r;
-    }
-
-    public void setR(int r) {
-        this.r = r;
     }
 
     public int getX() {
@@ -53,5 +45,15 @@ public class Circle {
     public void setY(int y) {
         this.y = y;
     }
+
+    public int getR() {
+        return r;
+    }
+
+    public void setR(int r) {
+        this.r = r;
+    }
+
+    
 
 }
