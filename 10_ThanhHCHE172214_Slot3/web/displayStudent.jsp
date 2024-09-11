@@ -18,13 +18,13 @@
                     <tr>
                         <td>Nhap vao Ho va ten dem: </td>
                         <td>
-                            <input type="text" name="lastName"/>
+                            <input type="text" name="lastName" required/>
                         </td>
                     </tr>
                     <tr>
                         <td>Nhap vao Ten: </td>
                         <td>
-                            <input type="text" name="firstName"/>
+                            <input type="text" name="firstName" required/>
                         </td>
                     </tr>
                     <tr>
@@ -55,7 +55,7 @@
                     <tr>
                         <td>Diem: </td>
                         <td>
-                            <input type="number" name="score" min="0" max="10" step="0.1" />
+                            <input type="number" name="score" min="0" max="10" step="0.1" required />
                         </td>
                     </tr>
                     
