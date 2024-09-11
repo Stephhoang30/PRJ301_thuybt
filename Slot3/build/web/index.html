@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <h1>Example Tinh chu vi, dien tich hinh chu nhat</h1>
+            <form action="cal" method="POST">
+                <table border="0">
+                    <tbody>
+                        <tr>
+                            <td>Nhap vao chieu dai: </td>
+                            <td>
+                                <input type="text" name="length"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nhap vao chieu rong: </td>
+                            <td>
+                                <input type="text" name="width"/>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Tinh chu vi: </td>
+                            <td>
+                                <input type="checkbox" name="calculate" value="Chuvi" />
+                            </td>                        
+                        </tr>
+                        
+                        <tr>
+                            <td>Tinh dien tich: </td>
+                            <td>
+                                <input type="checkbox" name="calculate" value="Dientich" />
+                            </td>                        
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                
+                <input type="submit" value="Ket qua"/>
+
+            </form>
+
+        </div>
+
+        <hr color="blue"/>
+        <div>
+            <h1>Example login form</h1>
+            
+            <form action="login" method="POST">
+
+                <table border="0">
+                    <tbody>
+
+                        <tr>
+                            <td>User name: </td>
+                            <td>
+                                <input type="text" name="user" placeholder="Enter username" required/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Password: </td>
+                            <td>
+                                <input type="password" name="pass" placeholder="Enter password" required/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="Login"/>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </form>
+
+        </div>
+    </body>
+</html>
