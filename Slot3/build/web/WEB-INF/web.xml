@@ -12,6 +12,10 @@
         <servlet-name>TinhChuViDienTich</servlet-name>
         <servlet-class>controller.TinhChuViDienTich</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StudentController</servlet-name>
+        <servlet-class>controller.StudentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Slot3Servlet</servlet-name>
         <url-pattern>/tinh</url-pattern>
@@ -23,5 +27,9 @@
     <servlet-mapping>
         <servlet-name>TinhChuViDienTich</servlet-name>
         <url-pattern>/cal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentController</servlet-name>
+        <url-pattern>/student</url-pattern>
     </servlet-mapping>
 </web-app>
