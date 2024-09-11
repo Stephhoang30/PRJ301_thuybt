@@ -66,7 +66,20 @@ public class StudentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String lastName = request.getParameter("lastName");
+        String firstName = request.getParameter("firstName");
+        String subject = request.getParameter("subject");
+        double score = Double.parseDouble(request.getParameter("score"));
+        
+        if (score >= 5.0) {
+            response.getWriter().print("Xin chao " + lastName + " " + firstName 
+                    + ". Chuc mung ban da qua mon " + subject 
+                    + " voi so diem " + score);            
+        } else {
+            response.getWriter().print("Xin chao " + lastName + " " + firstName 
+                    + ". Rat tiec ban da phai hoc lai " + subject 
+                    + " boi vi diem " + score + " < 5");
+        }    
     }
 
     /** 
