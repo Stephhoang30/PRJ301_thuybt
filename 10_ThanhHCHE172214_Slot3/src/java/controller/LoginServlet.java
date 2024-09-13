@@ -85,6 +85,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (flag) {
+            response.setContentType("text/html;charset=UTF-8");
             response.getWriter().println("Xin chao " + username + "!. Ban da dang nhap thanh cong");
         } else {
             response.getWriter().println(result);

@@ -69,7 +69,9 @@ public class TinhChuViDienTich extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try {
+            
             double length = Double.parseDouble(request.getParameter("length"));
             double width = Double.parseDouble(request.getParameter("width"));
             String[] choices = request.getParameterValues("calculate");
@@ -78,10 +80,10 @@ public class TinhChuViDienTich extends HttpServlet {
 
             if (choices != null) {
                 for (String choice : choices) {
-                    if ("Chuvi".equals(choice)) {
+                    if (choice.equals("Chuvi")) {
                         result += tinhChuVi(length, width) + "<br/>";
                     }
-                    if ("Dientich".equals(choice)) {
+                    if (choice.equals("Dientich")) {
                         result += tinhDienTich(length, width) + "<br/>";
                     }
                 }

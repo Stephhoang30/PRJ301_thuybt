@@ -71,7 +71,8 @@ public class StudentController extends HttpServlet {
         String subject = request.getParameter("subject");
         double score = Double.parseDouble(request.getParameter("score"));
         
-        if (score >= 5.0) {
+        response.setContentType("text/html;charset=UTF-8");
+        if (score >= 5.0) {          
             response.getWriter().print("Xin chao " + lastName + " " + firstName 
                     + ". Chuc mung ban da qua mon " + subject 
                     + " voi so diem " + score);            
