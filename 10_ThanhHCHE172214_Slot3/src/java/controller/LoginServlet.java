@@ -69,8 +69,13 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String username = request.getParameter("user");
         String password = request.getParameter("pass");
+        
+        String name = getServletContext().getInitParameter("name");
+        String pass = getServletContext().getInitParameter("pass");
+        
         boolean flag = true;
         String result = "";
         if ((username == null) || (username.length() == 0)) {
@@ -79,7 +84,7 @@ public class LoginServlet extends HttpServlet {
         } else if ((password == null) || (password.length() == 0)) {
             result = "Password is required";
             flag = false;
-        } else if ((username.equals("haphuong")) && (!password.equals("123"))) {
+        } else if ((username.equals(name)) && (!password.equals(pass))) {
             result = "Invalid password";
             flag = false;
         }
