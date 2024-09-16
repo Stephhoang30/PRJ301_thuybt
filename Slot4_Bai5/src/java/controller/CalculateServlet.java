@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author stephhoang
  */
-public class LoginServlet extends HttpServlet {
+public class CalculateServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +34,10 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet CalculateServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CalculateServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -69,32 +69,44 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String username = request.getParameter("user");
-        String password = request.getParameter("pass");
-        
-        String name = request.getServletContext().getInitParameter("name");
-        String pass = request.getServletContext().getInitParameter("pass");
-        
-        boolean flag = true;
-        String result = "";
-        if ((username == null) || (username.length() == 0)) {
-            result = "Name is required";
-            flag = false;
-        } else if ((password == null) || (password.length() == 0)) {
-            result = "Password is required";
-            flag = false;
-        } else if ((username.equals(name)) && (!password.equals(pass))) {
-            result = "Invalid password";
-            flag = false;
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            double first = Double.parseDouble(request.getParameter("first"));
+            double second = Double.parseDouble(request.getParameter("second"));
+            String[] tinhs = request.getParameterValues("tinh");
+            double result = 0;
+            if (tinhs != null) {
+                for (String tinh : tinhs) {
+                    if (tinh.equals("cong")) {
+                        result = first + second;
+                        break;
+                    } else if (tinh.equals("tru")) {
+                        result = first - second;
+                        break;
+                    } else if (tinh.equals("nhan")) {
+                        result = first * second;
+                    } else if (tinh.equals("chia")) {
+                        if (second == 0) {
+                            throw new NumberFormatException("Second number != 0");
+                        } else {
+                            result = first / second;
+                        }
+                    }
+                }
+            } else {
+                response.getWriter().println("No option selected!!");
+            }
+
+            response.getWriter().println("Kết quả: " + result);
+
+        } 
+        catch (NumberFormatException e) {
+            response.getWriter().println(e.getMessage());
+        }
+        catch (Exception e) {
+            response.getWriter().println("Error!!");
         }
 
-        if (flag) {
-            response.setContentType("text/html;charset=UTF-8");
-            response.getWriter().println("Xin chao " + username + "!. Ban da dang nhap thanh cong");
-        } else {
-            response.getWriter().println(result);
-        }
     }
 
     /**
