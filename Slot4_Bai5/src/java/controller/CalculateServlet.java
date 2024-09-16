@@ -69,7 +69,7 @@ public class CalculateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         response.setContentType("text/html;charset=UTF-8");
 
         try {
@@ -82,7 +82,6 @@ public class CalculateServlet extends HttpServlet {
             boolean operationPerformed = false;
 
             if (operations != null) {
-                // Loop through the selected operations
                 for (String operation : operations) {
                     switch (operation) {
                         case "cong":
@@ -115,7 +114,6 @@ public class CalculateServlet extends HttpServlet {
                 return;
             }
 
-            // Output the result
             response.getWriter().printf("Result: %.2f", result);
 
         } catch (NumberFormatException e) {
