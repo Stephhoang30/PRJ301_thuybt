@@ -73,7 +73,6 @@ public class CalculateServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         try {
-            // Parse the request parameters
             double first = Double.parseDouble(request.getParameter("first"));
             double second = Double.parseDouble(request.getParameter("second"));
             String[] operations = request.getParameterValues("tinh");
