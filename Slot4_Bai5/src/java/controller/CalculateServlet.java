@@ -97,7 +97,7 @@ public class CalculateServlet extends HttpServlet {
                 response.getWriter().println("No option selected!!");
             }
 
-            response.getWriter().println("Kết quả: " + result);
+            response.getWriter().printf("Kết quả: %.2f", result);
 
         } 
         catch (NumberFormatException e) {
