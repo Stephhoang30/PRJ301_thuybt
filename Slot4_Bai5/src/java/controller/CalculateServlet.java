@@ -69,42 +69,61 @@ public class CalculateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
+
         try {
+            // Parse the request parameters
             double first = Double.parseDouble(request.getParameter("first"));
             double second = Double.parseDouble(request.getParameter("second"));
-            String[] tinhs = request.getParameterValues("tinh");
+            String[] operations = request.getParameterValues("tinh");
+
             double result = 0;
-            if (tinhs != null) {
-                for (String tinh : tinhs) {
-                    if (tinh.equals("cong")) {
-                        result = first + second;
+            boolean operationPerformed = false;
+
+            if (operations != null) {
+                // Loop through the selected operations
+                for (String operation : operations) {
+                    switch (operation) {
+                        case "cong":
+                            result = first + second;
+                            operationPerformed = true;
+                            break;
+                        case "tru":
+                            result = first - second;
+                            operationPerformed = true;
+                            break;
+                        case "nhan":
+                            result = first * second;
+                            operationPerformed = true;
+                            break;
+                        case "chia":
+                            if (second == 0) {
+                                throw new ArithmeticException("Cannot divide by zero.");
+                            } else {
+                                result = first / second;
+                            }
+                            operationPerformed = true;
+                            break;
+                    }
+                    if (operationPerformed) {
                         break;
-                    } else if (tinh.equals("tru")) {
-                        result = first - second;
-                        break;
-                    } else if (tinh.equals("nhan")) {
-                        result = first * second;
-                    } else if (tinh.equals("chia")) {
-                        if (second == 0) {
-                            throw new NumberFormatException("Second number != 0");
-                        } else {
-                            result = first / second;
-                        }
                     }
                 }
             } else {
-                response.getWriter().println("No option selected!!");
+                response.getWriter().println("No operation selected!!");
+                return;
             }
 
-            response.getWriter().printf("Kết quả: %.2f", result);
+            // Output the result
+            response.getWriter().printf("Result: %.2f", result);
 
-        } 
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
+            response.getWriter().println("Invalid input! Please enter valid numbers.");
+        } catch (ArithmeticException e) {
             response.getWriter().println(e.getMessage());
-        }
-        catch (Exception e) {
-            response.getWriter().println("Error!!");
+        } catch (Exception e) {
+            response.getWriter().println("An unexpected error occurred!");
         }
 
     }
