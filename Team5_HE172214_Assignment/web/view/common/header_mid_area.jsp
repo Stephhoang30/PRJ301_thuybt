@@ -10,15 +10,16 @@
         <div class="row">
             <div class="col-lg-3 col-md-5 col-12">
                 <div class="header-search">
-                    <form action="#">
-                        <input type="text" placeholder="Search entire store here..." />
-                        <a href="#"><i class="fa fa-search"></i></a>
+                    <form action="home">
+                        <input type="hidden" name="search" value="searchByName"/>
+                        <input type="text" placeholder="Search entire store here..." name="keyword"/>
+                        <a href="#" onclick="this.closest('form').submit()"><i class="fa fa-search"></i></a>
                     </form>
                 </div>
             </div>
             <div class="col-lg-6 col-md-4 col-12">
                 <div class="logo-area text-center logo-xs-mrg">
-                    <a href="index.html"><img src="${pageContext.request.contextPath}img/logo/logo.png" alt="logo" /></a>
+                    <a href="home"><img src="${pageContext.request.contextPath}/img/logo/logo.png" alt="logo" /></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-12">
@@ -30,7 +31,7 @@
                                 <div class="cart-product">
                                     <div class="single-cart">
                                         <div class="cart-img">
-                                            <a href="#"><img src="${pageContext.request.contextPath}img/product/1.jpg" alt="book" /></a>
+                                            <a href="#"><img src="${pageContext.request.contextPath}/img/product/1.jpg" alt="book" /></a>
                                         </div>
                                         <div class="cart-info">
                                             <h5><a href="#">Joust Duffle Bag</a></h5>
@@ -42,7 +43,7 @@
                                     </div>
                                     <div class="single-cart">
                                         <div class="cart-img">
-                                            <a href="#"><img src="${pageContext.request.contextPath}img/product/3.jpg" alt="book" /></a>
+                                            <a href="#"><img src="${pageContext.request.contextPath}/img/product/3.jpg" alt="book" /></a>
                                         </div>
                                         <div class="cart-info">
                                             <h5><a href="#">Chaz Kangeroo Hoodie</a></h5>
