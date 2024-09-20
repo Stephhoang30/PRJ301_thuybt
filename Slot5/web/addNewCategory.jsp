@@ -1,4 +1,4 @@
-<%-- 
+    <%-- 
     Document   : addNewCategory
     Created on : Sep 18, 2024, 12:34:06 PM
     Author     : stephhoang
@@ -15,17 +15,9 @@
     <body>
         <h1> Add New Category </h1>
 
-        <p style="color: red;">${error}</p>
-        
         <form action="add" method="POST">
             <table border="0">
                 <tbody>
-                    <tr>
-                        <td>Category Id: </td>
-                        <td>
-                            <input type="number" name="id" min="1" max="1000" required=""/>
-                        </td>
-                    </tr>
                     <tr>
                         <td>Category Name:</td>
                         <td>
@@ -44,7 +36,13 @@
                             <input type="submit" value="Add"/>
                             <input type="reset" value="Reset"/>
                         </td>
-                    </tr>    
+                    </tr>   
+                    <tr>
+                        <td></td>
+                        <td>
+                            <p style="color: red;">${error}</p>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </form>

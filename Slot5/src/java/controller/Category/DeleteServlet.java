@@ -3,29 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package controller.Category;
 
 import dal.CategoryDAO;
-import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.List;
-import model.Category;
-import model.Product;
 
 /**
  *
  * @author stephhoang
  */
-public class HomeController extends HttpServlet {
-   
-    ProductDAO pDAO = new ProductDAO();
+public class DeleteServlet extends HttpServlet {
+    
     CategoryDAO cDAO = new CategoryDAO();
+    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -37,13 +32,14 @@ public class HomeController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeController</title>");  
+            out.println("<title>Servlet DeleteServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HomeController at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet DeleteServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,15 +56,9 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-               
-        // get list Category
-        List<Category> listCategory = cDAO.getAll();  
-        List<Product> listProduct = pDAO.getAll();
-        HttpSession session = request.getSession();
-        session.setAttribute("listCategory", listCategory);
-        session.setAttribute("listProduct", listProduct);
-        request.getRequestDispatcher("home.jsp").forward(request, response);
-        
+        String id = request.getParameter("id");      
+        cDAO.delete(id);
+        response.sendRedirect("home");
     } 
 
     /** 

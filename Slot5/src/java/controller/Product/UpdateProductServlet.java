@@ -3,24 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package controller.Product;
 
-import dal.CategoryDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Category;
+import java.sql.Date;
+import model.Product;
 
 /**
  *
  * @author stephhoang
  */
-public class UpdateServlet extends HttpServlet {
+public class UpdateProductServlet extends HttpServlet {
    
-    CategoryDAO cDAO = new CategoryDAO();
+    ProductDAO pDAO = new ProductDAO();
     
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,10 +38,10 @@ public class UpdateServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateServlet</title>");  
+            out.println("<title>Servlet UpdateProductServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UpdateServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet UpdateProductServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,12 +58,10 @@ public class UpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
         String id = request.getParameter("id");
-        Category c = cDAO.getCategoryById(id);
-        request.setAttribute("c", c);
-        request.getRequestDispatcher("update.jsp").forward(request, response);
-        
+        Product p = pDAO.getProductById(id);
+        request.setAttribute("p", p);
+        request.getRequestDispatcher("updateProduct.jsp").forward(request, response);
     } 
 
     /** 
@@ -75,17 +74,19 @@ public class UpdateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         String name = request.getParameter("name");
-        String describe = request.getParameter("des");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        float price = Float.parseFloat(request.getParameter("price"));
+        Date releaseDate = Date.valueOf(request.getParameter("rdate"));
+        String describe = request.getParameter("describe");
+        String image = request.getParameter("image");
+        int cid = Integer.parseInt(request.getParameter("cid"));
         
-        Category c = new Category();
-        c.setId(id);
-        c.setName(name);
-        c.setDescribe(describe);
         
-        cDAO.update(c);
+        Product product = new Product(id, name, quantity, price, releaseDate, describe, image, cid);
+        
+        pDAO.update(product);
         response.sendRedirect("home");
     }
 
