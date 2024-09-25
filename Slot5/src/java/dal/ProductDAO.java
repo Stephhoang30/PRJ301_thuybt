@@ -221,5 +221,50 @@ public class ProductDAO extends DBContext {
         }
         return null;
     }
+    
+    
+    public List<Product> findByCateID(String cateId) {
+
+        List<Product> list = new ArrayList<>();
+
+        Product p = null;
+        
+        // connect with DB
+        connection = getConnection();
+
+        // chuan bi cau lenh SQL
+        String sql = "SELECT * FROM Product WHERE [Product].[cid] = ?";
+        try {
+            // tao doi tuong PreparedStatement
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            // set parameter
+            statement.setString(1, cateId);
+
+            // thuc thi cau lenh
+            ResultSet resultSet = statement.executeQuery();
+
+            // tra ve ket qua
+            while (resultSet.next()) {
+                p = new Product(
+                        resultSet.getString("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getFloat("price"),
+                        resultSet.getDate("releaseDate"),
+                        resultSet.getString("describe"),
+                        resultSet.getString("image"),
+                        resultSet.getInt("cid")
+                );
+                
+                list.add(p);
+            }
+            
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

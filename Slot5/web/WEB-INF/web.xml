@@ -32,6 +32,10 @@
         <servlet-name>SearchServlet</servlet-name>
         <servlet-class>controller.Product.SearchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductByCategory</servlet-name>
+        <servlet-class>controller.Product.ProductByCategory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductByCategory</servlet-name>
+        <url-pattern>/product-by-category</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>

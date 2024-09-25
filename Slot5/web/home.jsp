@@ -33,7 +33,9 @@
                 <c:forEach items="${listCategory}" var="c">
                     <tr>
                         <td>${c.getId()}</td>
-                        <td>${c.getName()}</td>
+                        <td>
+                            <a href="product-by-category?cid=${c.getId()}">${c.getName()}</a>
+                        </td>
                         <td>${c.getDescribe()}</td>
                         <td>                        
                             <a href="update?id=${c.getId()}">Update</a>
