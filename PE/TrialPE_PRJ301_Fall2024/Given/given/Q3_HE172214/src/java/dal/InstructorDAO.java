@@ -48,4 +48,36 @@ public class InstructorDAO extends DBContext {
         return list;
     }
 
+    public List<Instructor> getInsBySub(String SubjectID) {
+
+        List<Instructor> list = new ArrayList<>();
+
+        String sql = "SELECT * \n"
+                + "FROM Instructors\n"
+                + "WHERE SubjectID LIKE ? ";
+
+        try {
+
+            statement = connection.prepareStatement(sql);
+            statement.setObject(1, "%" + SubjectID + "%");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Instructor ins = new Instructor(
+                        resultSet.getString("InstructorID"),
+                        resultSet.getString("InstructorName"),
+                        resultSet.getDate("BirthDate"),
+                        resultSet.getInt("Gender"),
+                        resultSet.getString("SubjectID")
+                );
+                list.add(ins);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 }
