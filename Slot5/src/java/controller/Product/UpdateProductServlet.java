@@ -87,7 +87,7 @@ public class UpdateProductServlet extends HttpServlet {
         Product product = new Product(id, name, quantity, price, releaseDate, describe, image, cid);
         
         pDAO.update(product);
-        response.sendRedirect("home");
+        response.sendRedirect("listProduct.jsp");
     }
 
     /** 

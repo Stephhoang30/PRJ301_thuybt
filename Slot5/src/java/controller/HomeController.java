@@ -23,8 +23,7 @@ import model.Product;
  * @author stephhoang
  */
 public class HomeController extends HttpServlet {
-   
-    ProductDAO pDAO = new ProductDAO();
+  
     CategoryDAO cDAO = new CategoryDAO();
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -63,10 +62,8 @@ public class HomeController extends HttpServlet {
                
         // get list Category
         List<Category> listCategory = cDAO.getAll();  
-        List<Product> listProduct = pDAO.getAll();
         HttpSession session = request.getSession();
         session.setAttribute("listCategory", listCategory);
-        session.setAttribute("listProduct", listProduct);
         request.getRequestDispatcher("home.jsp").forward(request, response);
         
     } 

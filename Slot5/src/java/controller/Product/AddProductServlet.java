@@ -91,7 +91,7 @@ public class AddProductServlet extends HttpServlet {
             request.getRequestDispatcher("addNewProduct.jsp").forward(request, response);
         } else {
             pDAO.insert(product);
-            response.sendRedirect("home");
+            response.sendRedirect("listProduct.jsp");
         }
 
     }

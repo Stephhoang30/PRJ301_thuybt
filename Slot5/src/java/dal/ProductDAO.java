@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import model.Category;
 import model.Product;
@@ -175,13 +177,59 @@ public class ProductDAO extends DBContext {
             e.printStackTrace();
         }
     }
-    
+
+    public List<Product> findByID(String keyword) {
+
+        List<Product> list = new ArrayList<>();
+
+        Product p = null;
+
+        // connect with DB
+        connection = getConnection();
+
+        // chuan bi cau lenh SQL
+        String sql = "SELECT *\n"
+                + "FROM [dbo].[Product]\n"
+                + "WHERE id LIKE ? ";
+        try {
+            // tao doi tuong PreparedStatement
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            // set parameter
+            statement.setString(1, "%" + keyword + "%");
+
+            // thuc thi cau lenh
+            ResultSet resultSet = statement.executeQuery();
+
+            // tra ve ket qua
+            while (resultSet.next()) {
+                p = new Product(
+                        resultSet.getString("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getFloat("price"),
+                        resultSet.getDate("releaseDate"),
+                        resultSet.getString("describe"),
+                        resultSet.getString("image"),
+                        resultSet.getInt("cid")
+                );
+
+                list.add(p);
+            }
+
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<Product> findByName(String keyword) {
 
         List<Product> list = new ArrayList<>();
 
         Product p = null;
-        
+
         // connect with DB
         connection = getConnection();
 
@@ -211,24 +259,111 @@ public class ProductDAO extends DBContext {
                         resultSet.getString("image"),
                         resultSet.getInt("cid")
                 );
-                
+
                 list.add(p);
             }
-            
+
             return list;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-    
-    
+
+    public List<Product> findByQuantity(String keyword) {
+
+        List<Product> list = new ArrayList<>();
+
+        Product p = null;
+
+        // connect with DB
+        connection = getConnection();
+
+        // chuan bi cau lenh SQL
+        String sql = "SELECT *\n"
+                + "FROM [dbo].[Product]\n"
+                + "WHERE quantity = ? ";
+        try {
+            // tao doi tuong PreparedStatement
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            // set parameter
+            statement.setString(1, keyword);
+
+            // thuc thi cau lenh
+            ResultSet resultSet = statement.executeQuery();
+
+            // tra ve ket qua
+            while (resultSet.next()) {
+                p = new Product(
+                        resultSet.getString("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getFloat("price"),
+                        resultSet.getDate("releaseDate"),
+                        resultSet.getString("describe"),
+                        resultSet.getString("image"),
+                        resultSet.getInt("cid")
+                );
+                list.add(p);
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Product> findByPrice(String keyword) {
+
+        List<Product> list = new ArrayList<>();
+
+        Product p = null;
+
+        // connect with DB
+        connection = getConnection();
+
+        // chuan bi cau lenh SQL
+        String sql = "SELECT *\n"
+                + "FROM [dbo].[Product]\n"
+                + "WHERE price <= ? ";
+        try {
+            // tao doi tuong PreparedStatement
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            // set parameter
+            statement.setString(1, keyword);
+
+            // thuc thi cau lenh
+            ResultSet resultSet = statement.executeQuery();
+
+            // tra ve ket qua
+            while (resultSet.next()) {
+                p = new Product(
+                        resultSet.getString("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("quantity"),
+                        resultSet.getFloat("price"),
+                        resultSet.getDate("releaseDate"),
+                        resultSet.getString("describe"),
+                        resultSet.getString("image"),
+                        resultSet.getInt("cid")
+                );
+                list.add(p);
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<Product> findByCateID(String cateId) {
 
         List<Product> list = new ArrayList<>();
 
         Product p = null;
-        
+
         // connect with DB
         connection = getConnection();
 
@@ -256,15 +391,45 @@ public class ProductDAO extends DBContext {
                         resultSet.getString("image"),
                         resultSet.getInt("cid")
                 );
-                
+
                 list.add(p);
             }
-            
+
             return list;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<Product> sortProductsByField(List<Product> products, String field, String sortOrder) {
+        
+        Comparator<Product> comparator;
+
+        switch (field) {
+            case "id":
+                comparator = Comparator.comparing(Product::getId);
+                break;
+            case "name":
+                comparator = Comparator.comparing(Product::getName);
+                break;
+            case "quantity":
+                comparator = Comparator.comparing(Product::getQuantity);
+                break;
+            case "price":
+                comparator = Comparator.comparing(Product::getPrice);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid sort field: " + field);
+        }
+
+        if ("desc".equalsIgnoreCase(sortOrder)) {
+            comparator = comparator.reversed();
+        }
+
+        Collections.sort(products, comparator);
+
+        return products;
     }
 
 }

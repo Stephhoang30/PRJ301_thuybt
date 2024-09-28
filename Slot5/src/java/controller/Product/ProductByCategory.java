@@ -61,7 +61,7 @@ public class ProductByCategory extends HttpServlet {
         String cid = request.getParameter("cid");
         List<Product> listProduct = pDAO.findByCateID(cid);
         request.setAttribute("listProduct", listProduct);
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        request.getRequestDispatcher("listProduct.jsp").forward(request, response);
         
     } 
 

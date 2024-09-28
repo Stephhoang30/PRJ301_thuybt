@@ -29,12 +29,16 @@
         <servlet-class>controller.Product.UpdateProductServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchServlet</servlet-name>
-        <servlet-class>controller.Product.SearchServlet</servlet-class>
+        <servlet-name>SearchAndSortServlet</servlet-name>
+        <servlet-class>controller.Product.SearchAndSortServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProductByCategory</servlet-name>
         <servlet-class>controller.Product.ProductByCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductController</servlet-name>
+        <servlet-class>controller.Product.ProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -65,12 +69,16 @@
         <url-pattern>/update-product</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SearchServlet</servlet-name>
-        <url-pattern>/search</url-pattern>
+        <servlet-name>SearchAndSortServlet</servlet-name>
+        <url-pattern>/search-sort</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductByCategory</servlet-name>
         <url-pattern>/product-by-category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductController</servlet-name>
+        <url-pattern>/product</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>

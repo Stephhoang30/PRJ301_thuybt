@@ -13,13 +13,18 @@
     </head>
     <body>
     <center>
-
+        <h1>
+            <a href="home">Category Management</a>
+            <a href="product">Product Management</a>
+        </h1>
+        
         <h1>LIST OF CATEGORIES</h1>
 
         <form action="add" method="get">
             <input type="submit" Value="Add a new category"/>
         </form>
 
+        <!-- List Category -->
         <table border="1px" width="50%">
             <thead>
                 <tr>
@@ -47,51 +52,8 @@
         </table>
     </center>
 
-    <div>
-        <form action="search" method="">
-            <input type="text" name="keyword" placeholder="Search for product..."/>
-            <input type="submit" value="Search"/>
-        </form>
 
-        <form action="add-product">
-            <input type="submit" value="Add a new product"/>
-        </form>
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Release Date</th>
-                    <th>Describe</th>
-                    <th>Image</th>
-                    <th>Category Id</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${listProduct}" var="p">
-                    <tr>
-                        <td>${p.getId()}</td>
-                        <td>${p.getName()}</td>
-                        <td>${p.getQuantity()}</td>
-                        <td>${p.getPrice()}</td>
-                        <td>${p.getReleaseDate()}</td>
-                        <td>${p.getDescribe()}</td>
-                        <td>${p.getImage()}</td>
-                        <td>${p.getCid()}</td>
-                        <td>
-                            <a href="update-product?id=${p.getId()}">Update</a>
-                            <a href="#" onclick="doDeleteProduct('${p.getId().trim()}')">Delete</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-
-    </div>
 </body>
 
 
@@ -102,11 +64,7 @@
         }
     }
 
-    function doDeleteProduct(id) {
-        if (confirm("Do you want to delete product id = " + id + " ?")) {
-            window.location = "delete-product?id=" + id;
-        }
-    }
+    
 </script>
 
 </html>

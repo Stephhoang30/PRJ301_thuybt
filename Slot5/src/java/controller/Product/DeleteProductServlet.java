@@ -56,7 +56,7 @@ public class DeleteProductServlet extends HttpServlet {
     throws ServletException, IOException {
         String id = request.getParameter("id");  
         pDAO.delete(id);
-        response.sendRedirect("home");
+        response.sendRedirect("listProduct.jsp");
     } 
 
     /** 
