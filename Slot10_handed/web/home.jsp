@@ -16,7 +16,7 @@
         <h1>Currency Exchange Rates</h1>
         <button onclick="window.location.href = 'home'">Currency List</button>
         <button>Hello ${username}</button>
-        <button onclick="window.location.href = 'login'">Logout</button>
+        <button onclick="window.location.href = 'logout'">Logout</button>
 
         <form action="home?action=search" method="POST">
             Code: <input type="text" name="code" value="${code}"/>
@@ -35,19 +35,19 @@
                 </tr>
             </thead>
             <tbody>   
-            <c:forEach items="${listCur}" var="c">
-                <tr>
-                    <td>${c.getCode()}</td>
-                    <td>${c.getName()}</td>
-                    <td>${c.getDescription()}</td>
-                    <td>${c.getRate()}</td>
-                    <td>
-                        <button onclick="window.location.href = 'update?code=${c.getCode()}'">Update</button>
-                    </td>
-                </tr> 
-            </c:forEach>
-        </tbody>
-    </table>
-                    
-</body>
+                <c:forEach items="${listCur}" var="c">
+                    <tr>
+                        <td>${c.getCode()}</td>
+                        <td>${c.getName()}</td>
+                        <td>${c.getDescription()}</td>
+                        <td>${c.getRate()}</td>
+                        <td>
+                            <button onclick="window.location.href = 'update?code=${c.getCode()}'">Update</button>
+                        </td>
+                    </tr> 
+                </c:forEach>
+            </tbody>
+        </table>
+
+    </body>
 </html>
