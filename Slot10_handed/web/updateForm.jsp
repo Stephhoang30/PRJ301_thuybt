@@ -23,11 +23,11 @@
             Code:<br/>
             <input type="text" name="code" readonly="" value="${c.getCode()}"/><br/>
             Name:<br/>
-            <input type="text" name="name" value="${c.getName()}"/><br/>
+            <input type="text" name="name" value="${name != null ? name : c.getName()}"/><br/>
             Description:<br/>
-            <input type="text" name="des" value="${c.getDescription()}"/><br/>
+            <input type="text" name="des" value="${des != null ? des : c.getDescription()}"/><br/>
             Rate:<br/>
-            <input type="text" name="rate" value="${c.getRate()}"/><br/>
+            <input type="text" name="rate" value="${rateStr != null ? rateStr : c.getRate()}"/><br/>
             <input type="submit" value="Update Rate"/>
         </form>
     </body>

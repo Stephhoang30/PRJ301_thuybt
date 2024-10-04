@@ -78,37 +78,42 @@ public class UpdateServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    String code = request.getParameter("code");
-    String name = request.getParameter("name");
-    String des = request.getParameter("des");
-    String rateStr = request.getParameter("rate");
-    float rate = 0;
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String code = request.getParameter("code");
+        String name = request.getParameter("name");
+        String des = request.getParameter("des");
+        String rateStr = request.getParameter("rate");
+        float rate = 0;
 
-    if (rateStr == null || rateStr.isEmpty()) {
-        request.setAttribute("error", "Rate is empty. Please enter rate.");
-        Currency c = cDAO.getCurrencyByCode(code);
-        request.setAttribute("c", c);
-        request.getRequestDispatcher("updateForm.jsp").forward(request, response);
-        return; 
-    } else {
-        try {
-            rate = Float.parseFloat(rateStr);
-        } catch (NumberFormatException e) {
-            request.setAttribute("error", "Invalid rate format. Please enter a valid number.");
+        if (rateStr == null || rateStr.isEmpty()) {
+            request.setAttribute("error", "Rate is empty. Please enter rate.");
             Currency c = cDAO.getCurrencyByCode(code);
             request.setAttribute("c", c);
+            request.setAttribute("rateStr", rateStr);
+            request.setAttribute("name", name);
+            request.setAttribute("des", des);
             request.getRequestDispatcher("updateForm.jsp").forward(request, response);
-            return; 
+            return;
+        } else {
+            try {
+                rate = Float.parseFloat(rateStr);
+            } catch (NumberFormatException e) {
+                request.setAttribute("error", "Invalid rate format. Please enter a valid number.");
+                Currency c = cDAO.getCurrencyByCode(code);
+                request.setAttribute("c", c);
+                request.setAttribute("rateStr", rateStr);
+                request.setAttribute("name", name);
+                request.setAttribute("des", des);
+                request.getRequestDispatcher("updateForm.jsp").forward(request, response);
+                return;
+            }
         }
+
+        Currency c = new Currency(code, name, des, rate);
+        cDAO.updateCurrency(c);
+        response.sendRedirect("home");
     }
-
-    Currency c = new Currency(code, name, des, rate);
-    cDAO.updateCurrency(c);
-    response.sendRedirect("home");
-}
-
 
     /**
      * Returns a short description of the servlet.
