@@ -21,7 +21,7 @@
                     <tr>
                         <td>Roll no</td>
                         <td>
-                            <input type="text" name="roll" value="" required="SE" />
+                            <input type="text" name="roll" value="" required/>
                         </td>
                     </tr>
                     <tr>
@@ -55,8 +55,9 @@
                     </tr>
                 </tbody>
             </table>
-            <input type="submit" value="Save"/>
 
+
+            <input type="submit" value="Save"/>
             <button type="button" onclick="window.location.href = 'student';">Cancel</button>          
         </form>
 

@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -73,7 +74,8 @@ public class LoginServlet extends HttpServlet {
         String pass = request.getServletContext().getInitParameter("pass");
         
         if (username.equals(user) && password.equals(pass)) {
-            request.getSession().setAttribute("username", username);
+            HttpSession session = request.getSession();
+            session.setAttribute("username", username);
             response.sendRedirect("home");
         } else {
             request.setAttribute("error", "Incorrect Username or Password");

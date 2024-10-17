@@ -10,13 +10,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author stephhoang
  */
-public class LogoutServlet extends HttpServlet {
+public class Q1Servlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +34,10 @@ public class LogoutServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LogoutServlet</title>");
+            out.println("<title>Servlet Q1Servlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LogoutServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Q1Servlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,11 +55,7 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-        request.getRequestDispatcher("login").forward(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     /**
@@ -74,7 +69,24 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        String Username = request.getServletContext().getInitParameter("Username");
+        String Password = request.getServletContext().getInitParameter("Password");
+
+        if (username == null || username.isEmpty() || password == null || password.isEmpty()) {      
+            request.setAttribute("error", "10_HoangCongThanh_Q2: You have input Username, Password");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            
+        } else if (!username.equals(Username) || !password.equals(Password)) {          
+            request.setAttribute("error", "10_HoangCongThanh_02: Wrong Username, Password");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            
+        } else {          
+            response.sendRedirect("Manager.jsp");
+        }
     }
 
     /**

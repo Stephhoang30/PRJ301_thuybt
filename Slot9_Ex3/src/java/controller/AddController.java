@@ -20,6 +20,8 @@ import model.Student;
  */
 public class AddController extends HttpServlet {
 
+    StudentDAO sDAO = new StudentDAO();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -58,8 +60,6 @@ public class AddController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        StudentDAO sDAO = new StudentDAO();
         List<String> listMajor = sDAO.getMajor();
         request.setAttribute("listMajor", listMajor);
         request.getRequestDispatcher("add.jsp").forward(request, response);
@@ -83,21 +83,32 @@ public class AddController extends HttpServlet {
         String city = request.getParameter("city");
         String genderParam = request.getParameter("gender");
 
-        boolean gender = "male".equals(genderParam);
+        boolean genderSelected = genderParam != null;
+        String errorMessage = "";
 
-        if (roll != null && !roll.trim().isEmpty()
-                && major != null && !major.trim().isEmpty()
-                && name != null && !name.trim().isEmpty()
-                && city != null && !city.trim().isEmpty()) {
-
-            Student newStudent = new Student(roll, major, name, city, gender);
-
-            StudentDAO sDAO = new StudentDAO();
-            sDAO.addStudent(newStudent);
-
-            response.sendRedirect("student"); 
+        if (roll == null || roll.trim().isEmpty()
+                || major == null || major.trim().isEmpty()
+                || name == null || name.trim().isEmpty()
+                || city == null || city.trim().isEmpty()
+                || !genderSelected) {
+            errorMessage = "All fields are required!";
         } else {
-            request.setAttribute("error", "All fields are required!");
+            if (major.equals("Engineering") && !roll.startsWith("SE")) {
+                errorMessage = "Roll number must start with 'SE' for Engineering.";
+            } else if (major.equals("Business") && !roll.startsWith("SB")) {
+                errorMessage = "Roll number must start with 'SB' for Business.";
+            }
+        }
+
+        if (errorMessage.isEmpty()) {
+            boolean gender = "male".equals(genderParam);
+            Student newStudent = new Student(roll, major, name, city, gender);
+            sDAO.addStudent(newStudent);
+            response.sendRedirect("student");
+        } else {
+            request.setAttribute("error", errorMessage);
+            List<String> listMajor = sDAO.getMajor();
+            request.setAttribute("listMajor", listMajor); // Repopulate majors
             request.getRequestDispatcher("add.jsp").forward(request, response);
         }
     }
