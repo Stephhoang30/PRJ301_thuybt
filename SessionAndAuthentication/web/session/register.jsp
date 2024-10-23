@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>10_HoangCongThanh</title>
     </head>
-    <body style="margin-left: 3cm; margin-top: 3cm">
+    <body style="margin-left: 3cm; margin-top: 2cm">
         <h1>Register Admin</h1>
 
         <form action="register" method="POST">
@@ -36,10 +36,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
                         <td>
                             <input type="submit" value="Register Now"/>
                         </td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>

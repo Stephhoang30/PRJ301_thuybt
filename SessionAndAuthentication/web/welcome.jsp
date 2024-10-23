@@ -52,12 +52,11 @@
                 </c:if>
             </ul>
 
-            <h1>Home page</h1>
-            <br/>
+            <h1>Home page</h1>           
             <h2>List Student</h2>
             <c:if test="${(sessionScope.account!=null)}">
-                <div style="margin-left: 11.4cm"> 
-                    <a href="check?action=add">Add New Student</a>
+                <div style="text-align: center; margin-bottom: 10px; margin-right: 330px ">
+                    <a href="addStudent.jsp">Add New Student</a>
                 </div>
             </c:if>
             <table border="1" cellpadding="5" cellspacing="0">

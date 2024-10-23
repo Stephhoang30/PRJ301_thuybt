@@ -11,9 +11,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>10_HoangCongThanh</title>
     </head>
-    <body style="margin-left: 3cm">
+    <body style="margin-left: 3cm; margin-top: 2cm">
         <h1>Admin Login</h1>
-        <br/>
+        
         <form action="login" method="POST">
             <table border="0">
                 <tbody>
