@@ -17,24 +17,36 @@ public class AccountDAO extends DBContext {
     protected PreparedStatement statement;
     protected ResultSet resultSet;
 
-    public boolean checkUsernameAndPassword(Account account) {
-        String sql = "SELECT * \n"
-                + "FROM Account \n"
-                + "WHERE username = ? AND [password] = ?";
+    public Account checkUsernameAndPassword(Account account) {
+        String sql = "SELECT * FROM Account WHERE username = ? AND [password] = ?";
 
         try {
+            // Prepare the SQL statement
             statement = connection.prepareStatement(sql);
 
-            statement.setObject(1, account.getUsername());
-            statement.setObject(2, account.getPassword());
+            // Set the parameters
+            statement.setString(1, account.getUsername());
+            statement.setString(2, account.getPassword());
 
+            // Execute the query
             resultSet = statement.executeQuery();
 
-            return resultSet.next();
+            // If a matching account is found, populate and return the Account object
+            if (resultSet.next()) {
+                Account foundAccount = new Account();
+                foundAccount.setId(resultSet.getInt("id"));
+                foundAccount.setUsername(resultSet.getString("username"));
+                foundAccount.setPassword(resultSet.getString("password"));
+                foundAccount.setEmail(resultSet.getString("email"));
+                foundAccount.setAddress(resultSet.getString("address"));
+                foundAccount.setRoleId(resultSet.getInt("roleId"));
+                return foundAccount;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        return false;
+        } 
+        
+        return null;
     }
 
     public boolean checkUsername(Account a) {
@@ -46,9 +58,9 @@ public class AccountDAO extends DBContext {
             statement = connection.prepareStatement(sql);
 
             statement.setObject(1, a.getUsername());
-            
+
             resultSet = statement.executeQuery();
-            
+
             return resultSet.next();
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,20 +69,20 @@ public class AccountDAO extends DBContext {
     }
 
     public void insert(Account a) {
-         String sql = "INSERT INTO Account (username, password, email, address, roleId) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Account (username, password, email, address, roleId) VALUES (?, ?, ?, ?, ?)";
 
-    try {
-        statement = connection.prepareStatement(sql);
-        statement.setObject(1, a.getUsername());
-        statement.setObject(2, a.getPassword());
-        statement.setObject(3, a.getEmail());
-        statement.setObject(4, a.getAddress());
-        statement.setObject(5, a.getRoleId());
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setObject(1, a.getUsername());
+            statement.setObject(2, a.getPassword());
+            statement.setObject(3, a.getEmail());
+            statement.setObject(4, a.getAddress());
+            statement.setObject(5, a.getRoleId());
 
-        statement.executeUpdate();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -28,7 +28,7 @@
             <input type="text" name="des" value="${des != null ? des : c.getDescription()}"/><br/>
             Rate:<br/>
             <input type="text" name="rate" value="${rateStr != null ? rateStr : c.getRate()}"/><br/>
-            <input type="submit" value="Update Rate"/>
+            <button type="submit" onclick="return confirm('Do you want to update this rate?')">Update Rate</button>
         </form>
     </body>
 </html>

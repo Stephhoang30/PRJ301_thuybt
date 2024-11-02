@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Admin - Dashboard</title>
+        <title>Dashboard</title>
 
         <!-- Custom fonts for this template-->
         <link href="${pageContext.request.contextPath}/vendor-admin/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -129,7 +129,10 @@
             <!-- Logout Modal-->
             <jsp:include page="../common/admin/logout-modal.jsp"></jsp:include>
             
-            <jsp:include page="../admin/addProduct.jsp"></jsp:include>
+            <jsp:include page="../admin/addProductModal.jsp"></jsp:include>
+            <jsp:include page="../admin/deleteProductModal.jsp"></jsp:include>
+            <jsp:include page="../admin/editProductModal.jsp"></jsp:include>
+
 
             <!-- Bootstrap core JavaScript-->
             <script src="${pageContext.request.contextPath}/vendor-admin/jquery/jquery.min.js"></script>

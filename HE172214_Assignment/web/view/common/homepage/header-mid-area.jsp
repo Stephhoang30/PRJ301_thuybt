@@ -19,7 +19,7 @@
             </div>
             <div class="col-lg-6 col-md-4 col-12">
                 <div class="logo-area text-center logo-xs-mrg">
-                    <a href="home"><img src="${pageContext.request.contextPath}/img/logo/logo.jpg" alt="logo" /></a>
+                    <a href="home"><img src="${pageContext.request.contextPath}/img/logo/logo.jpg" alt="logo" width="300" height="30" /></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-12">
@@ -58,8 +58,8 @@
                                     <h5>Total <span>£12.00</span></h5>
                                 </div>
                                 <div class="cart-bottom">
-                                    <a class="view-cart" href="cart.html">view cart</a>
-                                    <a href="checkout.html">Check out</a>
+                                    <a class="view-cart" href="payment">View cart</a>
+                                    <a href="view/user/payment/check-out.jsp">Check out</a>
                                 </div>
                             </div>
                         </li>

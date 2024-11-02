@@ -101,12 +101,12 @@ public class AuthenticationController extends HttpServlet {
         account.setPassword(password);
 
         // check existed
-        boolean check = aDAO.checkUsernameAndPassword(account);
+        Account foundAccount = aDAO.checkUsernameAndPassword(account);
 
         // true => homes
-        if (check) {
+        if (foundAccount != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("account", account);
+            session.setAttribute("account", foundAccount);
             url = "home";
 
             // false => login.jsp + error
@@ -146,7 +146,7 @@ public class AuthenticationController extends HttpServlet {
         } else {
             Account a = new Account();
             a.setUsername(username);
-            a.setPassword(password); // Ensure you set the password
+            a.setPassword(password);
 
             // Check if the username already exists
             boolean checkUsername = aDAO.checkUsername(a);

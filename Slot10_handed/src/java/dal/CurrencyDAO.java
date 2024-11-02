@@ -50,10 +50,10 @@ public class CurrencyDAO extends DBContext {
 
         // Add conditions if code or name is not null/empty
         if (code != null && !code.isEmpty()) {
-            sql += " AND code = ?";
+            sql += " AND code LIKE ?";
         }
         if (name != null && !name.isEmpty()) {
-            sql += " AND name = ?";
+            sql += " AND name LIKE ?";
         }
 
         try {
@@ -61,10 +61,10 @@ public class CurrencyDAO extends DBContext {
 
             int paramIndex = 1; // To keep track of parameter index
             if (code != null && !code.isEmpty()) {
-                statement.setString(paramIndex++, code);
+                statement.setString(paramIndex++, "%" + code + "%");
             }
             if (name != null && !name.isEmpty()) {
-                statement.setString(paramIndex++, name);
+                statement.setString(paramIndex++, "%" + name + "%");
             }
 
             resultSet = statement.executeQuery();

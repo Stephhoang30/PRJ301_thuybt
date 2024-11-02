@@ -14,39 +14,13 @@
                         <ul>
                             <li class="active"><a href="home">Home</a>                               
                             </li>
-                            <li><a href="product-details.html">Phone<i class="fa fa-angle-down"></i></a>
+                            <li><a href="product-details.html">Categories<i class="fa fa-angle-down"></i></a>
                                 <div class="mega-menu">
                                     <span>
-                                        <a href="#" class="title">Iphone</a>
-                                        <a href="shop.html">Tops & Tees</a>
-                                        <a href="shop.html">Polo Short Sleeve</a>
-                                        <a href="shop.html">Graphic T-Shirts</a>
-                                        <a href="shop.html">Jackets & Coats</a>
-                                        <a href="shop.html">Fashion Jackets</a>
-                                    </span>
-                                    <span>
-                                        <a href="#" class="title">weaters</a>
-                                        <a href="shop.html">Crochet</a>
-                                        <a href="shop.html">Sleeveless</a>
-                                        <a href="shop.html">Stripes</a>
-                                        <a href="shop.html">Sweaters</a>
-                                        <a href="shop.html">hoodies</a>
-                                    </span>
-                                    <span>
-                                        <a href="#" class="title">Bottoms</a>
-                                        <a href="shop.html">Heeled sandals</a>
-                                        <a href="shop.html">Polo Short Sleeve</a>
-                                        <a href="shop.html">Flat sandals</a>
-                                        <a href="shop.html">Short Sleeve</a>
-                                        <a href="shop.html">Long Sleeve</a>
-                                    </span>
-                                    <span>
-                                        <a href="#" class="title">Jeans Pants</a>
-                                        <a href="shop.html">Polo Short Sleeve</a>
-                                        <a href="shop.html">Sleeveless</a>
-                                        <a href="shop.html">Graphic T-Shirts</a>
-                                        <a href="shop.html">Hoodies</a>
-                                        <a href="shop.html">Jackets</a>
+                                        <a href="#" class="title">Smartphone</a>
+                                        <a href="shop.html">Iphone</a>
+                                        <a href="shop.html">Samsung Galaxy</a>
+                                        <a href="shop.html">Xiaomi</a>
                                     </span>
                                 </div>
                             </li>
