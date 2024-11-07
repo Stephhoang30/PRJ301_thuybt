@@ -29,7 +29,7 @@
         <link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/colReorder-bootstrap4.css">
-        
+
         <style>
             .error{
                 color:red;
@@ -55,9 +55,6 @@
                         <!-- Breadcrumbs-->
                     <jsp:include page="../common/admin/breadcrumbs.jsp"></jsp:include>
 
-                        <!-- Icon Cards-->
-                    <jsp:include page="../common/admin/icon-cards.jsp"></jsp:include>
-
                         <!-- DataTables Example -->
                         <div class="card mb-3">
                             <div class="card-header">
@@ -82,25 +79,31 @@
                                         <tbody>
                                         <c:forEach items="${products}" var="p">
                                             <tr>
-                                                <td>${p.getId()}</td>
-                                                <td>${p.getName()}</td>
+                                                <td name="id">${p.getId()}</td>
+                                                <td name="name">${p.getName()}</td>
                                                 <td>
                                                     <img src="${pageContext.request.contextPath}/img/product/${p.getImage()}" width="100" height="100" alt="alt"/>
                                                 </td>
-                                                <td>${p.getQuantity()}</td>
-                                                <td>${p.getPrice()}</td>
-                                                <td>
+                                                <td name="quantity">${p.getQuantity()}</td>
+                                                <td name="price">${p.getPrice()}</td>
+                                                <td name="category">
                                                     <c:forEach items="${categories}" var="c">
                                                         <c:if test="${c.getId() == p.getCategoryId()}">
                                                             ${c.getName()}
                                                         </c:if>
                                                     </c:forEach>
                                                 </td>
-                                                <td>${p.getDescription()}</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary">Edit</button>
-                                                    <button type="button" class="btn btn-danger">Delete</button>
+                                                <td name="description">${p.getDescription()}</td>
+                                                <td style="display: flex; gap: 8px;">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProductModal" onclick="editProductModal(this)">
+                                                        <i class="fas fa-edit"></i> <!-- Edit icon -->
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-product-modal" onclick="deleteProductModal(${p.id})">
+                                                        <i class="fas fa-trash-alt"></i> <!-- Delete icon -->
+                                                    </button>
                                                 </td>
+
+
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -127,11 +130,11 @@
             </a>
 
             <!-- Logout Modal-->
-            <jsp:include page="../common/admin/logout-modal.jsp"></jsp:include>
-            
-            <jsp:include page="../admin/addProductModal.jsp"></jsp:include>
-            <jsp:include page="../admin/deleteProductModal.jsp"></jsp:include>
-            <jsp:include page="../admin/editProductModal.jsp"></jsp:include>
+        <jsp:include page="../common/admin/logout-modal.jsp"></jsp:include>
+
+        <jsp:include page="../admin/addProductModal.jsp"></jsp:include>
+        <jsp:include page="../admin/deleteProductModal.jsp"></jsp:include>
+        <jsp:include page="../admin/editProductModal.jsp"></jsp:include>
 
 
             <!-- Bootstrap core JavaScript-->

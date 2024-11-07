@@ -14,6 +14,7 @@
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="account-area text-end">
                     <ul>
+                        <p style="color: green">${message}</p>
                         <c:if test="${account != null}">
                             <!--Admin-->
                             <c:if test="${account.getRoleId() == 1}">
@@ -28,7 +29,6 @@
                                 </li>
                             </c:if>
                         </c:if>
-                        <li><a href="checkout.html">Checkout</a></li>
                         <c:if test="${account == null}">
                             <li><a href="authen?action=login">Sign in</a></li>
                             <li><a href="authen?action=signup">Sign up</a></li>

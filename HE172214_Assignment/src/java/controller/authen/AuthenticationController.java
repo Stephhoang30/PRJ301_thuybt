@@ -20,6 +20,8 @@ import model.Account;
  */
 public class AuthenticationController extends HttpServlet {
 
+    private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+
     AccountDAO aDAO = new AccountDAO();
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,10 +69,11 @@ public class AuthenticationController extends HttpServlet {
         String action = request.getParameter("action") != null ? request.getParameter("action") : "";
         String url = "";
         switch (action) {
-            case "login":
+        case "login":
                 url = loginDoPost(request, response);
                 break;
             case "signup":
+                
                 url = signup(request, response);
                 break;
             default:
@@ -129,12 +132,19 @@ public class AuthenticationController extends HttpServlet {
 
     private String signup(HttpServletRequest request, HttpServletResponse response) {
         String url = "";
+
         // get info
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirm-password");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
 
-        if (username == null || username.trim().isEmpty()) {
+        // Kiểm tra định dạng email
+        if (email == null || !email.matches(EMAIL_REGEX)) {
+            url = "view/authen/signup.jsp";
+            request.setAttribute("error", "Invalid email format!");
+        } else if (username == null || username.trim().isEmpty()) {
             url = "view/authen/signup.jsp";
             request.setAttribute("error", "Username is required!");
         } else if (password == null || password.trim().isEmpty()) {
@@ -147,12 +157,14 @@ public class AuthenticationController extends HttpServlet {
             Account a = new Account();
             a.setUsername(username);
             a.setPassword(password);
+            a.setEmail(email);
+            a.setAddress(address);
+            a.setRoleId(2); // giả sử roleId là 2
 
             // Check if the username already exists
             boolean checkUsername = aDAO.checkUsername(a);
 
             if (checkUsername) {
-                // Username already exists
                 url = "view/authen/signup.jsp";
                 request.setAttribute("error", "Username already exists!");
             } else {

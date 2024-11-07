@@ -10,18 +10,18 @@
 <html class="no-js" lang="en">
 
 
-<!-- Mirrored from htmldemo.net/koparion/koparion/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Feb 2024 17:30:57 GMT -->
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Mobile Store</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Mirrored from htmldemo.net/koparion/koparion/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Feb 2024 17:30:57 GMT -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Mobile Store</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
 
-	<!-- all css here -->
+        <!-- all css here -->
         <!-- bootstrap v3.3.6 css -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
         <!-- animate css -->
@@ -43,12 +43,12 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
         <!-- responsive css -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css">
-</head>
+    </head>
 
-<body class="register">
+    <body class="register">
 
-	<!-- header-area-start -->
-	<header>
+        <!-- header-area-start -->
+        <header>
             <!-- header-top-area-start -->
             <jsp:include page="../common/homepage/header-top-area.jsp"></jsp:include>
                 <!-- header-top-area-end -->
@@ -66,46 +66,55 @@
             <!-- breadcrumbs-area-start -->
         <jsp:include page="../common/homepage/breadcrumbs-area.jsp"></jsp:include>
             <!-- breadcrumbs-area-end -->
-        
-	<!-- user-sign-up-area-start -->
-	<div class="user-login-area mb-70">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="login-title text-center mb-30">
-						<h2>Sign Up</h2>
-					</div>
-				</div>
-				<div class="offset-lg-2 col-lg-8 col-md-12 col-12">
-					<div class="billing-fields">
-						<div class="single-register">
-							<form action="authen?action=signup" method="POST" id="sign-up-form">
-								<label>Username or email<span>*</span></label>
-                                                                <input type="text" placeholder="Username" name="username" required=""/>
-								<label>Password<span>*</span></label>
-                                                                <input type="password" placeholder="Password" name="password" required=""/>
-                                                                <label>Confirm Password<span>*</span></label>
-                                                                <input type="password" placeholder="Confirm Password" name="confirm-password" required=""/>
-							</form>
-						</div>
-                                                <div>
-                                                    <p style="color: red">${error}</p>
-                                                </div>
-						<div class="single-register">
-                                                    <a href="#" onclick="document.querySelector('#sign-up-form').submit()">Register</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- user-sign-up-area-end -->
-        
-	<!-- footer-area-start -->
-        <jsp:include page="../common/homepage/footer-area.jsp"></jsp:include>
-	<!-- footer-area-end -->
 
-	<!-- all js here -->
+            <!-- user-sign-up-area-start -->
+            <div class="user-login-area mb-70">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="login-title text-center mb-30">
+                                <h2>Sign Up</h2>
+                            </div>
+                        </div>
+                        <div class="offset-lg-2 col-lg-8 col-md-12 col-12">
+                            <div class="billing-fields">
+                                <div class="single-register">
+                                    <form action="authen?action=signup" method="POST" id="sign-up-form">
+                                        <label>Username<span>*</span></label>
+                                        <input type="text" placeholder="Username" name="username" required=""/>
+
+                                        <label>Email<span>*</span></label>
+                                        <input type="email" placeholder="Email" name="email" required=""/>
+
+                                        <label>Address</label>
+                                        <input type="text" placeholder="Address" name="address"/>
+
+                                        <label>Password<span>*</span></label>
+                                        <input type="password" placeholder="Password" name="password" required=""/>
+
+                                        <label>Confirm Password<span>*</span></label>
+                                        <input type="password" placeholder="Confirm Password" name="confirm-password" required=""/>
+                                    </form>
+
+                                </div>
+                                <div>
+                                    <p style="color: red">${error}</p>
+                            </div>
+                            <div class="single-register">
+                                <a href="#" onclick="document.querySelector('#sign-up-form').submit()">Register</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- user-sign-up-area-end -->
+
+        <!-- footer-area-start -->
+        <jsp:include page="../common/homepage/footer-area.jsp"></jsp:include>
+            <!-- footer-area-end -->
+
+            <!-- all js here -->
             <!-- modernizr css -->
             <script src="${pageContext.request.contextPath}/js/vendor/modernizr-2.8.3.min.js"></script>
         <!-- jquery latest version -->
@@ -134,5 +143,5 @@
         <script src="${pageContext.request.contextPath}/js/plugins.js"></script>
         <!-- main js -->
         <script src="${pageContext.request.contextPath}/js/main.js"></script>
-</body>
+    </body>
 </html>

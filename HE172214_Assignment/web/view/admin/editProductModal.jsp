@@ -93,17 +93,17 @@
         //xoá thông báo lỗi hiện tại
         $('.error').html('');
         if (name === '') {
-            $('#nameEditError').html('Tên sách không được để trống');
+            $('#nameEditError').html('Tên sản phẩm không được để trống');
         }
         if (price === '') {
-            $('#priceEditError').html('Giá của quyển sách không được để trống');
+            $('#priceEditError').html('Giá của sản phẩm không được để trống');
         } else if (!$.isNumeric(price) || parseFloat(price) < 0) {
-            $('#priceEditError').html('Giá của quyển sách phải là số và không được nhỏ hơn 0');
+            $('#priceEditError').html('Giá của sản phẩm phải là số và không được nhỏ hơn 0');
         }
         if (quantity === '') {
-            $('#quantityEditError').html('Số lượng sách không được để trống');
+            $('#quantityEditError').html('Số lượng sản phẩm không được để trống');
         } else if (!$.isNumeric(quantity) || parseInt(price) < 0) {
-            $('#priceEditError').html('Số lượng của quyển sách phải là số và không được nhỏ hơn 0');
+            $('#priceEditError').html('Số lượng của sản phẩm phải là số và không được nhỏ hơn 0');
         }
         // Kiểm tra nếu không có lỗi thì submit form
         let error = '';
